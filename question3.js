@@ -4,34 +4,48 @@
 //       - Loops over the array
 //       - Display the content of each book along with the book image
 //       - Returns true if it works, false if it doesn't
-  
+
 //       Target the '#root' element in 'index.html'.
-//       Use the following object: 
- 
-
+//       Use the following object:
+'use strict';
 const books = [
-      {
-            bookName: "The Nature of Software Development",
-            author: "Ron Jeffries",
-            coverURL:"https://cdn-images-1.medium.com/max/1200/1*CQRh-pFTZ97ReXogbefleQ.png"
-      },
-      {
-            bookName: "Clean Code",
-            author: "Robert Cecil Martin",
-            coverURL:''
-      }
+  {
+    bookName: 'The Nature of Software Development',
+    author: 'Ron Jeffries',
+    coverURL:
+      'https://cdn-images-1.medium.com/max/1200/1*CQRh-pFTZ97ReXogbefleQ.png',
+  },
+  {
+    bookName: 'Clean Code',
+    author: 'Robert Cecil Martin',
+    coverURL: '',
+  },
 ];
-function injectBooksToDOM(arg){
-      
 
-      books.forEach((book) => {
-            let bookInfo=  document.getElementById('root');
+function injectBooksToDOM(arr) {
+  const ulElement = document.createElement('ul');
+  const looping = arr.forEach((book) => {
+    const liElemnt = document.createElement('li');
+    ulElement.appendChild(liElemnt);
+    const pElement = document.createElement('p');
+    pElement.innerText = `${book.bookName} \n by ${book.author}`;
+    liElemnt.appendChild(pElement);
+    const imgElement = document.createElement('img');
+    imgElement.src = book.coverURL;
+    liElemnt.appendChild(imgElement);
 
-            let bookName= books.bookName;
-            let bookAuthor = books.author;
-            let bookCover = books.coverURL;
-       
-      }
-      )
-        
+    if (book.coverURL == '') {
+      return false;
+    }
+
+    // styling
+    imgElement.style.width = '300px';
+    liElemnt.style.border = 'solid 3px black';
+    liElemnt.style.width = '500px';
+    ulElement.style.textAlign = 'center';
+    ulElement.style.listStyle = 'none';
+  });
+  return ulElement;
 }
+let root = injectBooksToDOM(books);
+document.querySelector('#root').appendChild(root);
