@@ -37,13 +37,6 @@ function injectBooksToDOM(arr) {
     if (book.coverURL == '') {
       return false;
     }
-
-    // styling
-    imgElement.style.width = '300px';
-    liElemnt.style.border = 'solid 3px black';
-    liElemnt.style.width = '500px';
-    ulElement.style.textAlign = 'center';
-    ulElement.style.listStyle = 'none';
   });
   return ulElement;
 }
